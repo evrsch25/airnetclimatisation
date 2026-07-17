@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#e8f2fa"/>
+  <rect x="200" y="150" width="400" height="300" rx="12" fill="#1b6bb5" opacity="0.15"/>
+  <text x="400" y="290" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" fill="#1b6bb5">Nettoyage climatisation</text>
+  <text x="400" y="320" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#6b7280">Image � venir</text>
+</svg>

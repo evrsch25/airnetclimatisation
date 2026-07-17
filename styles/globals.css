@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary — extrait du logo */
+  --color-primary: #0084ff;
+  --color-primary-hover: #0066cc;
+  --color-primary-light: #e8f4fd;
+  --color-primary-dark: #002d5b;
+
+  /* Neutrals */
+  --color-background: #ffffff;
+  --color-surface: #f8f9fa;
+  --color-surface-alt: #f1f3f5;
+  --color-border: #e5e7eb;
+  --color-border-light: #f0f0f0;
+
+  /* Text */
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #6b7280;
+  --color-text-muted: #9ca3af;
+
+  /* Semantic */
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+
+  /* Radius */
+  --radius-button: 10px;
+  --radius-card: 12px;
+  --radius-input: 10px;
+  --radius-image: 12px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.06);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.06);
+
+  /* Spacing scale */
+  --spacing-section: 5rem;
+  --spacing-section-sm: 3rem;
+
+  /* Typography */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  /* Max widths */
+  --width-content: 1280px;
+  --width-content-wide: 1440px;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-text-primary antialiased;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-text-primary font-semibold leading-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-[3.5rem];
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-[1.75rem];
+  }
+
+  p {
+    @apply text-text-secondary leading-relaxed;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
