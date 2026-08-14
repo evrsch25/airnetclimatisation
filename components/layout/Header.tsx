@@ -47,7 +47,7 @@ export function Header() {
         isScrolled ? "bg-background/95 shadow-sm backdrop-blur-sm" : "bg-background",
       )}
     >
-      <div className="mx-auto flex h-[72px] max-w-[var(--width-content-wide)] items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-20 max-w-[var(--width-content-wide)] items-center justify-between px-4 sm:px-6 lg:h-[96px] lg:px-8">
         <Logo variant="header" />
 
         <nav className="hidden items-center gap-6 xl:gap-8 lg:flex" aria-label="Navigation principale">

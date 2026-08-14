@@ -32,8 +32,9 @@ export default function PourquoiNousPage() {
         primaryCta={ctaConfig.primary}
         secondaryCta={ctaConfig.secondary}
         badges={trustGuarantees}
-        imageSrc={images.hero.whyUs.fallback}
-        imageAlt={images.hero.whyUs.alt}
+        imageSrc={images.brand.airPlusPur.path}
+        imageAlt={images.brand.airPlusPur.alt}
+        imageAspect="square"
       />
 
       <Section title="Nos engagements" subtitle="Des valeurs qui guident chaque intervention.">

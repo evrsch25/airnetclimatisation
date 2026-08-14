@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 type RevealProps = {
@@ -16,12 +16,6 @@ export function Reveal({
   delay = 0,
   direction = "up",
 }: RevealProps) {
-  const prefersReducedMotion = useReducedMotion();
-
-  if (prefersReducedMotion) {
-    return <div className={cn(className)}>{children}</div>;
-  }
-
   const initial = {
     opacity: 0,
     y: direction === "up" ? 20 : direction === "down" ? -20 : 0,

@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { FloatingActions } from "@/components/layout/FloatingActions";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { JsonLd } from "@/components/shared/JsonLd";
+import { MotionProvider } from "@/components/providers/MotionProvider";
 import { defaultMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/constants/site";
 import {
@@ -34,12 +35,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <JsonLd
           data={[getLocalBusinessSchema(), getOrganizationSchema(), getWebSiteSchema()]}
         />
-        <Header />
-        <main id="main-content" className="flex-1" tabIndex={-1}>
-          {children}
-        </main>
-        <Footer />
-        <FloatingActions />
+        <MotionProvider>
+          <Header />
+          <main id="main-content" className="flex-1" tabIndex={-1}>
+            {children}
+          </main>
+          <Footer />
+          <FloatingActions />
+        </MotionProvider>
       </body>
     </html>
   );

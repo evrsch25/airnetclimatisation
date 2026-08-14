@@ -4,10 +4,11 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 
 type SectionProps = {
   children: React.ReactNode;
+  eyebrow?: string;
   title?: string;
   subtitle?: string;
   className?: string;
-  background?: "white" | "surface" | "primary-light";
+  background?: "white" | "surface" | "primary-light" | "dark";
   spacing?: "default" | "sm" | "lg";
   id?: string;
   align?: "left" | "center";
@@ -15,6 +16,7 @@ type SectionProps = {
 
 export function Section({
   children,
+  eyebrow,
   title,
   subtitle,
   className,
@@ -33,13 +35,18 @@ export function Section({
         background === "white" && "bg-background",
         background === "surface" && "bg-surface",
         background === "primary-light" && "bg-primary-light",
+        background === "dark" && "bg-primary-dark",
         className,
       )}
     >
       <Container>
-        {(title || subtitle) && (
-          <SectionHeader title={title} subtitle={subtitle} align={align} />
-        )}
+        <SectionHeader
+          eyebrow={eyebrow}
+          title={title}
+          subtitle={subtitle}
+          align={align}
+          tone={background === "dark" ? "dark" : "light"}
+        />
         {children}
       </Container>
     </section>

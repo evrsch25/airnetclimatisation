@@ -12,6 +12,7 @@ type HeroProps = {
   secondaryCta: { label: string; href: string };
   imageSrc?: string;
   imageAlt?: string;
+  imageAspect?: "landscape" | "square";
   badges?: string[];
   className?: string;
 };
@@ -24,6 +25,7 @@ export function Hero({
   secondaryCta,
   imageSrc = "/images/placeholders/hero-climatisation.svg",
   imageAlt = "Nettoyage professionnel de climatisation",
+  imageAspect = "landscape",
   badges,
   className,
 }: HeroProps) {
@@ -60,7 +62,12 @@ export function Hero({
           </Reveal>
 
           <Reveal delay={0.15}>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-image)] bg-surface">
+            <div
+              className={cn(
+                "relative overflow-hidden rounded-[var(--radius-image)] bg-surface",
+                imageAspect === "square" ? "aspect-square" : "aspect-[4/3]",
+              )}
+            >
               <Image
                 src={imageSrc}
                 alt={imageAlt}

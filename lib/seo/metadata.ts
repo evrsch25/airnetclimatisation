@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { PageSeo } from "@/types";
 import { siteConfig } from "@/constants/site";
+import { images } from "@/constants/images";
 
 type GenerateMetadataOptions = PageSeo & {
   ogImage?: string;
@@ -11,7 +12,7 @@ export function generatePageMetadata({
   description,
   path,
   keywords,
-  ogImage = "/images/og/default.svg",
+  ogImage = images.og.path,
 }: GenerateMetadataOptions): Metadata {
   const url = `${siteConfig.url}${path}`;
 

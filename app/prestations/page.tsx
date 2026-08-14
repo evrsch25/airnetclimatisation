@@ -45,15 +45,20 @@ export default function PrestationsPage() {
         intro={servicesIntro}
         primaryCta={ctaConfig.primary}
         secondaryCta={ctaConfig.secondary}
-        imageSrc={images.hero.prestations.fallback}
+        imageSrc={images.hero.prestations.path}
         imageAlt={images.hero.prestations.alt}
       />
 
-      <Section title="Ce que nous réalisons" subtitle="Chaque intervention est adaptée à votre installation.">
+      <Section
+        eyebrow="Nos prestations"
+        title="Ce que nous réalisons"
+        subtitle="Chaque intervention est adaptée à votre installation."
+      >
         <ServiceGrid services={services} />
       </Section>
 
       <Section
+        eyebrow="Transparence"
         title="Grille tarifaire"
         subtitle={pricingIntro}
         background="surface"
@@ -63,6 +68,7 @@ export default function PrestationsPage() {
       </Section>
 
       <Section
+        eyebrow="Notre méthode"
         title="Déroulement d'une intervention"
         subtitle="Une méthode professionnelle, étape par étape."
       >
@@ -70,6 +76,7 @@ export default function PrestationsPage() {
       </Section>
 
       <Section
+        eyebrow="FAQ"
         title="Questions fréquentes"
         subtitle="Tout ce que vous devez savoir sur nos prestations."
         background="surface"

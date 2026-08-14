@@ -1,5 +1,27 @@
 import type { Benefit, WhyMaintainSection } from "@/types";
 
+/** Les trois piliers de la baseline du logo : Nettoyage • Entretien • Performance */
+export const heroPillars: Benefit[] = [
+  {
+    id: "nettoyage",
+    title: "Nettoyage",
+    description: "Un air plus sain pour votre confort",
+    icon: "Droplets",
+  },
+  {
+    id: "entretien",
+    title: "Entretien",
+    description: "Préserver la durée de vie de votre climatiseur",
+    icon: "Wrench",
+  },
+  {
+    id: "performance",
+    title: "Performance",
+    description: "Des performances retrouvées, une consommation maîtrisée",
+    icon: "Snowflake",
+  },
+];
+
 export const heroBenefits: Benefit[] = [
   {
     id: "performance",
@@ -43,6 +65,7 @@ export const whyMaintainSections: WhyMaintainSection[] = [
   {
     id: "air-quality",
     title: "Qualité de l'air",
+    icon: "Wind",
     content: [
       "Avec le temps, les filtres et l'unité intérieure accumulent poussières, bactéries, moisissures, mauvaises odeurs, graisses et impuretés.",
       "Une climatisation encrassée peut diffuser des particules et des odeurs désagréables dans tout votre logement ou votre local professionnel. Un nettoyage complet permet de retrouver un air plus sain et un meilleur confort au quotidien.",
@@ -52,6 +75,7 @@ export const whyMaintainSections: WhyMaintainSection[] = [
   {
     id: "odors",
     title: "Éviter les mauvaises odeurs",
+    icon: "FlaskConical",
     content: [
       "L'humidité et les dépôts présents dans votre installation favorisent le développement des bactéries et des champignons. Résultat : des odeurs de renfermé ou d'humidité apparaissent dès la mise en marche.",
       "Une désinfection adaptée permet d'y remédier efficacement.",
@@ -60,6 +84,7 @@ export const whyMaintainSections: WhyMaintainSection[] = [
   {
     id: "consumption",
     title: "Réduire la consommation électrique",
+    icon: "Zap",
     content: [
       "Une climatisation encrassée force davantage le ventilateur, le compresseur et les échangeurs.",
       "En retrouvant un fonctionnement plus fluide, votre installation peut gagner en efficacité et limiter les surconsommations inutiles. C'est un entretien utile pour votre confort comme pour votre budget.",
@@ -74,6 +99,7 @@ export const whyMaintainSections: WhyMaintainSection[] = [
   {
     id: "breakdowns",
     title: "Éviter les pannes coûteuses",
+    icon: "ShieldCheck",
     content: [
       "L'encrassement peut provoquer des fuites d'eau, du gel de l'unité, une surchauffe, une baisse de puissance ou une panne du compresseur.",
       "Un entretien régulier aide à prévenir l'encrassement excessif et peut éviter des réparations lourdes et coûteuses. Mieux vaut entretenir que subir une panne au mauvais moment.",
@@ -89,6 +115,7 @@ export const whyMaintainSections: WhyMaintainSection[] = [
   {
     id: "lifespan",
     title: "Allonger la durée de vie",
+    icon: "Clock",
     content: [
       "Comme tout équipement, une climatisation bien entretenue dure plus longtemps, fonctionne mieux et conserve de meilleures performances au fil du temps.",
     ],

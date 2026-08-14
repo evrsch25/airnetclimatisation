@@ -72,9 +72,22 @@ export type Benefit = {
   icon: string;
 };
 
+export type CityPage = {
+  slug: string;
+  name: string;
+  postalCode: string;
+  /** Distance routière approximative depuis Port-de-Bouc, en kilomètres */
+  distanceKm: number;
+  intro: string;
+  context: string[];
+  areas: string[];
+  localAngle: { title: string; text: string };
+};
+
 export type WhyMaintainSection = {
   id: string;
   title: string;
+  icon: string;
   content: string[];
   listItems?: string[];
 };

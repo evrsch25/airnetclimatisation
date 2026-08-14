@@ -58,7 +58,13 @@ npm run build        # Build de production
 npm run start        # Serveur de production
 npm run lint         # Vérification ESLint
 npm run format       # Formatage Prettier
+
+node scripts/build-assets.mjs   # Régénère logo horizontal, emblème, favicons et image Open Graph
+node scripts/screenshot.mjs     # Captures de contrôle visuel (nécessite le serveur de dev)
 ```
+
+`build-assets.mjs` dérive tous les dérivés du logo depuis `public/logos/logo.png`.
+Si le client fournit un nouveau logo, remplacer ce fichier et relancer le script.
 
 ## Pages
 
@@ -68,13 +74,18 @@ npm run format       # Formatage Prettier
 | `/prestations` | Prestations et tarifs |
 | `/pourquoi-nous` | Valeurs et engagements |
 | `/zone-intervention` | Zone géographique |
+| `/nettoyage-climatisation/[ville]` | 8 pages SEO locales (contenu dans `constants/city-pages.ts`) |
 | `/contact` | Formulaire de devis |
 | `/mentions-legales` | Mentions légales |
 | `/cgu` | Conditions générales |
 
 ## Contenu
 
-Tout le contenu métier est centralisé dans `constants/`. Les éléments marqués `TODO` attendent des informations du client (logo, photos, n° contrat assurance, temps de réponse).
+Tout le contenu métier est centralisé dans `constants/`.
+
+## Documentation
+
+- [`docs/RESEND.md`](docs/RESEND.md) — configuration de l'envoi des e-mails du formulaire.
 
 ## Licence
 

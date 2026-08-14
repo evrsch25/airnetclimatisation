@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Card } from "@/components/ui/Card";
-import { Icon } from "@/components/ui/Icon";
+import { IconBadge } from "@/components/ui/IconBadge";
 import { Reveal } from "@/components/ui/Reveal";
 import type { Service } from "@/types";
 
@@ -15,8 +15,8 @@ export function ServiceCard({ service, index = 0, compact = false }: ServiceCard
   return (
     <Reveal delay={index * 0.05}>
       <Card hover className="flex h-full flex-col">
-        <Icon name={service.icon} size={28} />
-        <h3 className="mt-4 text-lg font-semibold">{service.title}</h3>
+        <IconBadge name={service.icon} />
+        <h3 className="mt-5 text-lg font-semibold">{service.title}</h3>
         <p className="mt-2 flex-1 text-sm">{service.description}</p>
 
         {!compact && (

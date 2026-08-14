@@ -102,6 +102,28 @@ export function getContactPageSchema() {
   };
 }
 
+export function getCityServiceSchema(cityName: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `Nettoyage et désinfection de climatisation à ${cityName}`,
+    serviceType: "Nettoyage de climatisation",
+    provider: {
+      "@type": "LocalBusiness",
+      name: siteConfig.name,
+      telephone: contactInfo.phone,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: contactInfo.address.street,
+        addressLocality: contactInfo.address.city,
+        postalCode: contactInfo.address.postalCode,
+        addressCountry: "FR",
+      },
+    },
+    areaServed: { "@type": "City", name: cityName },
+  };
+}
+
 export function getServiceSchema() {
   return {
     "@context": "https://schema.org",

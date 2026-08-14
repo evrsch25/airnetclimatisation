@@ -36,7 +36,7 @@ export default function ZoneInterventionPage() {
         intro={interventionZone.extendedDescription}
         primaryCta={ctaConfig.primary}
         secondaryCta={ctaConfig.secondary}
-        imageSrc={images.hero.zone.fallback}
+        imageSrc={images.hero.zone.path}
         imageAlt={images.hero.zone.alt}
       />
 

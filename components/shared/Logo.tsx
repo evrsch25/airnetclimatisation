@@ -9,9 +9,10 @@ type LogoProps = {
   className?: string;
 };
 
-export function Logo({ variant = "header", className }: LogoProps) {
-  const height = variant === "header" ? 48 : 40;
+/** Dimensions intrinsèques de logo-horizontal.png, produit par scripts/build-assets.mjs */
+const INTRINSIC = { width: 724, height: 220 };
 
+export function Logo({ variant = "header", className }: LogoProps) {
   return (
     <Link
       href="/"
@@ -19,11 +20,11 @@ export function Logo({ variant = "header", className }: LogoProps) {
       aria-label={`${siteConfig.name} — Accueil`}
     >
       <Image
-        src={images.logo.path}
+        src={images.logo.horizontalPath}
         alt={images.logo.alt}
-        width={height * 2.2}
-        height={height}
-        className="h-auto w-auto max-h-12 object-contain"
+        width={INTRINSIC.width}
+        height={INTRINSIC.height}
+        className={cn("w-auto object-contain", variant === "header" ? "h-16 lg:h-[76px]" : "h-14")}
         priority={variant === "header"}
       />
     </Link>

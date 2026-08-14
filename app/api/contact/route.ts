@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { contactFormSchema } from "@/lib/validations/contact";
+import { buildInternalNotification, buildVisitorConfirmation } from "@/emails/templates";
 
 export async function POST(request: Request) {
   try {
@@ -19,6 +20,7 @@ export async function POST(request: Request) {
 
     const apiKey = process.env.RESEND_API_KEY;
     const contactEmail = process.env.CONTACT_EMAIL ?? "contact@airnetclimatisation.fr";
+    const fromAddress = process.env.RESEND_FROM ?? "Air Net Climatisation <onboarding@resend.dev>";
 
     if (!apiKey) {
       return NextResponse.json(
@@ -29,25 +31,36 @@ export async function POST(request: Request) {
 
     const { Resend } = await import("resend");
     const resend = new Resend(apiKey);
-
     const { name, phone, email, city, address, message } = result.data;
+    const data = { name, phone, email, city, address, message };
 
-    await resend.emails.send({
-      from: "Air Net Climatisation <onboarding@resend.dev>",
+    const notification = buildInternalNotification(data);
+    const { error } = await resend.emails.send({
+      from: fromAddress,
       to: contactEmail,
-      replyTo: email,
-      subject: `Nouvelle demande de devis — ${name}`,
-      html: `
-        <h2>Nouvelle demande de devis</h2>
-        <p><strong>Nom :</strong> ${name}</p>
-        <p><strong>Téléphone :</strong> ${phone}</p>
-        <p><strong>Email :</strong> ${email}</p>
-        <p><strong>Ville :</strong> ${city}</p>
-        <p><strong>Adresse :</strong> ${address}</p>
-        <p><strong>Message :</strong></p>
-        <p>${message}</p>
-      `,
+      replyTo: data.email,
+      subject: notification.subject,
+      html: notification.html,
     });
+
+    if (error) {
+      return NextResponse.json(
+        { error: "Erreur lors de l'envoi. Veuillez réessayer ou nous appeler." },
+        { status: 502 },
+      );
+    }
+
+    // L'accusé de réception ne doit pas faire échouer la demande s'il n'part pas
+    const confirmation = buildVisitorConfirmation(data);
+    await resend.emails
+      .send({
+        from: fromAddress,
+        to: data.email,
+        replyTo: contactEmail,
+        subject: confirmation.subject,
+        html: confirmation.html,
+      })
+      .catch(() => null);
 
     return NextResponse.json({ success: true });
   } catch {

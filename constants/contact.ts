@@ -18,5 +18,5 @@ export const contactInfo: ContactInfo = {
 
 export const responseTime = {
   label: "Temps de réponse",
-  value: "TODO — À confirmer avec le client",
+  value: "Sous 24 à 48 h maximum",
 };

@@ -12,6 +12,8 @@ export const siteConfig: SiteConfig = {
 
 export const heroContent = {
   title: "Nettoyage & désinfection de climatisation",
+  /** Le titre découpé pour l'affichage bicolore du hero d'accueil */
+  titleLines: ["Nettoyage & désinfection", "de climatisation"],
   subtitle:
     "Respirez un air plus sain, retrouvez les performances de votre installation et réduisez votre consommation d'énergie.",
   intro:

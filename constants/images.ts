@@ -4,20 +4,25 @@
  */
 export const images = {
   logo: {
+    /** Version carrée d'origine — utilisée pour les données structurées */
     path: "/logos/logo.png",
+    /** Reconstruit à partir du logo carré par scripts/build-assets.mjs */
+    horizontalPath: "/logos/logo-horizontal.png",
+    /** Pictogramme seul, détouré en cercle — lisible sur fond sombre */
+    emblemPath: "/logos/logo-emblem.png",
     alt: "Logo Air Net Climatisation — Nettoyage, entretien et performance",
   },
 
   hero: {
     home: {
       path: "/images/hero/accueil.webp",
-      alt: "Technicien nettoyant une climatisation — Air Net Climatisation",
-      fallback: "/images/placeholders/hero-climatisation.svg",
+      alt: "Technicien Air Net Climatisation nettoyant une climatisation murale",
+      fallback: null,
     },
     prestations: {
       path: "/images/hero/prestations.webp",
-      alt: "Intervention de nettoyage et désinfection de climatisation",
-      fallback: "/images/placeholders/prestations.svg",
+      alt: "Filtre encrassé et produits professionnels de désinfection de climatisation",
+      fallback: null,
     },
     whyUs: {
       path: "/images/hero/pourquoi-nous.webp",
@@ -26,13 +31,13 @@ export const images = {
     },
     zone: {
       path: "/images/hero/zone-intervention.webp",
-      alt: "Zone d'intervention Air Net Climatisation — Bouches-du-Rhône",
-      fallback: "/images/placeholders/zone.svg",
+      alt: "Technicien Air Net Climatisation arrivant chez un client dans les Bouches-du-Rhône",
+      fallback: null,
     },
     contact: {
       path: "/images/hero/contact.webp",
-      alt: "Contactez Air Net Climatisation pour un devis gratuit",
-      fallback: "/images/placeholders/contact.svg",
+      alt: "Technicien Air Net Climatisation conseillant une cliente à son domicile",
+      fallback: null,
     },
   },
 
@@ -49,10 +54,25 @@ export const images = {
     },
   },
 
+  /** Visuels de marque fournis par le client */
+  brand: {
+    slogan: {
+      path: "/images/brand/slogan-aspirateur.png",
+      alt: "Votre air mérite plus qu'un simple coup d'aspirateur",
+      fallback: null,
+    },
+    airPlusPur: {
+      path: "/images/brand/air-plus-pur.png",
+      alt: "Air Net Climatisation — Un air plus pur, un confort au quotidien",
+      fallback: null,
+    },
+  },
+
   og: {
+    /** 1200x630 imposé par Facebook, LinkedIn et WhatsApp — généré par scripts/build-assets.mjs */
     path: "/images/og/default.jpg",
     alt: "Air Net Climatisation — Nettoyage & désinfection de climatisation",
-    fallback: "/images/og/default.svg",
+    fallback: null,
   },
 } as const;
 

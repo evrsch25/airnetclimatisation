@@ -20,7 +20,7 @@ export const legalInfo = {
   },
   mediator: {
     name: "MEDIMMOCONSO",
-    website: "https://www.medimmoconso.fr",
+    website: "https://medimmoconso.fr",
   },
 };
 

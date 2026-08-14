@@ -44,7 +44,7 @@ export default function ContactPage() {
         intro="Remplissez le formulaire ou appelez-nous directement. Nous vous répondons rapidement."
         primaryCta={ctaConfig.primary}
         secondaryCta={ctaConfig.secondary}
-        imageSrc={images.hero.contact.fallback}
+        imageSrc={images.hero.contact.path}
         imageAlt={images.hero.contact.alt}
       />
 
