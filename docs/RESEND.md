@@ -15,14 +15,25 @@ Ce document liste, dans l'ordre, tout ce qu'il y a à faire.
 ## Ce qu'il faut avoir sous la main
 
 - Un accès au compte e-mail `contact@airnetclimatisation.fr`.
-- Un accès à la **zone DNS** du domaine `airnetclimatisation.fr`, chez le
-  registrar où le domaine a été acheté (OVH, Ionos, Gandi, Namecheap…).
-  C'est l'écran qui permet d'ajouter des enregistrements `TXT`, `MX`, `CNAME`.
-  Chez OVH par exemple : *Espace client → Noms de domaine → airnetclimatisation.fr → Zone DNS*.
+- Un accès à la **zone DNS** du domaine, chez OVH :
+  *Espace client → Noms de domaine → airnetclimatisation.fr → Zone DNS*.
 - Un accès au projet Vercel (pour y coller les variables d'environnement).
 
 > Si l'accès à la zone DNS n'est pas disponible, l'étape 2 est bloquante.
 > Voir la section « Solution de repli » en fin de document.
+
+### Ce qui existe déjà sur le domaine
+
+Relevé le 14/08/2026, à connaître avant de commencer :
+
+- Les enregistrements `MX` pointent vers `mx0` à `mx3.mail.ovh.net` : la
+  messagerie est hébergée chez OVH. **Ne jamais les modifier.**
+- Un SPF existe déjà sur le domaine : `v=spf1 include:mx.ovh.com ~all`.
+  Il concerne les e-mails envoyés depuis la boîte OVH. Resend, lui, pose son
+  propre SPF sur le sous-domaine `send`, donc **il n'y a pas de conflit et il
+  ne faut pas toucher à celui d'OVH**.
+- Aucun `_dmarc` n'existe : celui proposé par Resend peut être ajouté sans
+  risque d'écraser quoi que ce soit.
 
 ---
 
@@ -62,12 +73,13 @@ générique et finiraient très souvent en spam.
 5. Recopier **à l'identique** chaque enregistrement dans la zone DNS du domaine.
    Points d'attention :
    - Ne pas ajouter le domaine à la fin du nom : saisir `send`, pas
-     `send.airnetclimatisation.fr` (la plupart des interfaces le complètent).
+     `send.airnetclimatisation.fr` (OVH le complète automatiquement).
    - La clé DKIM est très longue : la copier d'un bloc, sans retour à la ligne
      ni espace ajouté.
-   - Si un enregistrement `SPF` (`v=spf1 …`) existe déjà sur le domaine, **ne
-     pas en créer un second** : il faut fusionner les deux en ajoutant
-     `include:amazonses.com` dans celui qui existe.
+   - Le SPF de Resend porte sur `send`, pas sur la racine du domaine : il
+     cohabite sans problème avec le SPF OVH existant. Ne pas les fusionner.
+   - Ne modifier aucun enregistrement `MX` de la racine : ce sont ceux de la
+     messagerie OVH. Celui de Resend porte sur `send` uniquement.
 6. Revenir dans Resend et cliquer sur **Verify DNS Records**.
 
 La propagation DNS prend de quelques minutes à quelques heures (jusqu'à 24 h

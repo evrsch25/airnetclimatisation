@@ -10,7 +10,7 @@ type HeroProps = {
   intro?: string;
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
-  imageSrc?: string;
+  imageSrc: string;
   imageAlt?: string;
   imageAspect?: "landscape" | "square";
   badges?: string[];
@@ -23,7 +23,7 @@ export function Hero({
   intro,
   primaryCta,
   secondaryCta,
-  imageSrc = "/images/placeholders/hero-climatisation.svg",
+  imageSrc,
   imageAlt = "Nettoyage professionnel de climatisation",
   imageAspect = "landscape",
   badges,
@@ -74,7 +74,6 @@ export function Hero({
                 fill
                 className="object-cover"
                 priority
-                unoptimized={imageSrc.endsWith(".svg")}
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>

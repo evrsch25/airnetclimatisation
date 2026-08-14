@@ -85,6 +85,7 @@ Tout le contenu métier est centralisé dans `constants/`.
 
 ## Documentation
 
+- [`docs/DEPLOIEMENT.md`](docs/DEPLOIEMENT.md) — mise en ligne sur Vercel et bascule du domaine OVH.
 - [`docs/RESEND.md`](docs/RESEND.md) — configuration de l'envoi des e-mails du formulaire.
 
 ## Licence

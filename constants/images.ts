@@ -27,7 +27,7 @@ export const images = {
     whyUs: {
       path: "/images/hero/pourquoi-nous.webp",
       alt: "Professionnel Air Net Climatisation lors d'une intervention",
-      fallback: "/images/placeholders/pourquoi-nous.svg",
+      fallback: null,
     },
     zone: {
       path: "/images/hero/zone-intervention.webp",
