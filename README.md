@@ -85,7 +85,8 @@ Tout le contenu métier est centralisé dans `constants/`.
 
 ## Documentation
 
-- [`docs/DEPLOIEMENT.md`](docs/DEPLOIEMENT.md) — mise en ligne sur Vercel et bascule du domaine OVH.
+- [`docs/CHECKLIST_DEPLOIEMENT.md`](docs/CHECKLIST_DEPLOIEMENT.md) — pas à pas Windows (SSH, commandes, DNS, HTTPS, Resend).
+- [`docs/DEPLOIEMENT.md`](docs/DEPLOIEMENT.md) — mise en ligne sur le VPS Hostinger et bascule DNS OVH.
 - [`docs/RESEND.md`](docs/RESEND.md) — configuration de l'envoi des e-mails du formulaire.
 
 ## Licence

@@ -1,126 +1,222 @@
-# Mise en ligne du site
+# Mise en ligne — VPS Hostinger
 
-## Pourquoi pas l'hébergement OVH en FTP
+Le site tourne sur le **VPS Hostinger** (`72.61.106.201`), à côté d'un autre
+site déjà hébergé. Le domaine et la messagerie restent chez **OVH**.
 
-Le site est une application **Next.js**, qui a besoin d'un processus Node.js en
-fonctionnement permanent — notamment pour la route `/api/contact` qui envoie les
-e-mails du formulaire.
-
-L'hébergement mutualisé OVH (`ftp.cluster129.hosting.ovh.net`) exécute du PHP,
-pas du Node.js. Déposer les fichiers par FTP ne produirait pas un site
-fonctionnel. Ce n'est pas une limite du projet, c'est la nature de cette offre
-d'hébergement, très bien adaptée à un WordPress mais pas à ce type d'application.
-
-**Ce qui reste chez OVH :** le nom de domaine, la zone DNS, et la messagerie
-`contact@airnetclimatisation.fr`. Rien n'est résilié ni déplacé.
-**Ce qui change :** uniquement l'adresse vers laquelle le domaine renvoie pour
-afficher les pages web.
+Vercel n'est plus utilisé pour la production.
 
 ---
 
-## État actuel du domaine
-
-Relevé le 14/08/2026 :
-
-| Enregistrement | Valeur actuelle                          | Action                |
-| -------------- | ---------------------------------------- | --------------------- |
-| Serveurs de noms | `dns200.anycast.me`, `ns200.anycast.me` | Ne pas toucher        |
-| `MX`           | `mx0` à `mx3.mail.ovh.net`               | **Ne pas toucher**    |
-| `TXT` (SPF)    | `v=spf1 include:mx.ovh.com ~all`         | Ne pas toucher        |
-| `A` sur `@`    | `51.91.236.255` (mutualisé OVH)          | À remplacer           |
-| `A` sur `www`  | `51.91.236.255`                          | À supprimer, remplacé par un `CNAME` |
-| `TXT` `_dmarc` | absent                                   | À ajouter (étape Resend) |
-
-> On **conserve les serveurs de noms OVH**. On ne bascule pas sur ceux de Vercel :
-> cela obligerait à recréer tous les enregistrements existants, à commencer par
-> les `MX`, avec un risque de coupure de la messagerie.
-
----
-
-## Étape 1 — Déployer sur Vercel
-
-1. Aller sur [vercel.com](https://vercel.com) et se connecter **avec le compte GitHub**
-   qui héberge le dépôt (`evrsch25`).
-2. **Add New → Project**, puis importer `evrsch25/airnetclimatisation`.
-3. Vercel détecte Next.js tout seul. Ne rien modifier dans *Build & Development
-   Settings*.
-4. Avant de valider, déplier **Environment Variables** et saisir :
-
-   | Nom                    | Valeur                                                   |
-   | ---------------------- | -------------------------------------------------------- |
-   | `NEXT_PUBLIC_SITE_URL` | `https://airnetclimatisation.vercel.app`                  |
-   | `CONTACT_EMAIL`        | `contact@airnetclimatisation.fr`                          |
-   | `RESEND_API_KEY`       | la clé `re_…` (voir `docs/RESEND.md`)                     |
-   | `RESEND_FROM`          | `Air Net Climatisation <contact@airnetclimatisation.fr>`  |
-
-   Si Resend n'est pas encore configuré, laisser `RESEND_API_KEY` vide : le site
-   fonctionnera, seul le formulaire affichera un message invitant à téléphoner.
-
-5. **Deploy**. Au bout d'une à deux minutes, le site est accessible sur une URL
-   en `.vercel.app` : **c'est celle-ci qu'on envoie au client pour validation.**
-
-À partir de là, chaque `git push` sur `main` redéploie automatiquement la
-production, et chaque branche obtient sa propre URL de prévisualisation.
-
----
-
-## Étape 2 — Brancher le domaine (après validation du client)
-
-### Côté Vercel
-
-1. *Projet → Settings → Domains → Add*.
-2. Saisir `airnetclimatisation.fr`. Vercel proposera d'ajouter aussi
-   `www.airnetclimatisation.fr` : accepter.
-3. Vercel affiche les valeurs à créer. **Utiliser celles affichées à l'écran**,
-   elles peuvent différer de celles ci-dessous.
-
-### Côté OVH
-
-*Espace client → Noms de domaine → airnetclimatisation.fr → Zone DNS*
-
-1. **Modifier** l'enregistrement `A` sur `@` :
-   remplacer `51.91.236.255` par `76.76.21.21`.
-2. **Supprimer** l'enregistrement `A` sur `www`, puis créer à la place un
-   `CNAME` sur `www` pointant vers la valeur donnée par Vercel
-   (de la forme `xxxxxxxx.vercel-dns-0xx.com`).
-   OVH refuse un `CNAME` tant qu'un `A` existe sur le même nom : la suppression
-   doit précéder la création.
-3. **Ne toucher à aucune autre ligne**, en particulier les `MX` et le `TXT` SPF.
-
-La propagation prend de quelques minutes à quelques heures. Vercel génère
-automatiquement le certificat HTTPS une fois le domaine résolu.
-
-### Côté code
-
-Une fois le domaine actif, mettre à jour sur Vercel :
+## Architecture cible
 
 ```
+Visiteur
+   │
+   ▼
+OVH DNS  ──A──►  72.61.106.201 (VPS Hostinger)
+                     │
+                     ▼
+                   Nginx
+              ┌──────┴──────┐
+              │             │
+     autre-site.fr    airnetclimatisation.fr
+     (inchangé)             │
+                            ▼
+                     Next.js (PM2)
+                     port local 3001
+```
+
+Chaque domaine a son **bloc Nginx**. L'autre site n'est pas touché tant qu'on
+n'édite que le fichier de config d'`airnetclimatisation.fr`.
+
+---
+
+## Ce qui reste chez OVH
+
+| Élément | Action |
+|---|---|
+| Serveurs de noms (`dns200` / `ns200.anycast.me`) | Ne pas toucher |
+| `MX` (messagerie `contact@…`) | **Ne pas toucher** |
+| SPF racine (`include:mx.ovh.com`) | Ne pas toucher |
+| `A` sur `@` (aujourd'hui le mutualisé) | Remplacer par `72.61.106.201` |
+| `A` / `CNAME` sur `www` | Pointer aussi vers le VPS |
+
+---
+
+## Prérequis sur le VPS
+
+À vérifier une fois connecté en SSH (`ssh root@72.61.106.201`) :
+
+```bash
+# Stack déjà en place ?
+nginx -v
+node -v          # besoin de Node 20+
+pm2 -v           # ou on l'installe
+certbot --version
+
+# Sites déjà configurés (ne pas les modifier)
+ls /etc/nginx/sites-enabled/
+# ou chez Hostinger parfois :
+ls /etc/nginx/conf.d/
+```
+
+Si Node est absent ou trop vieux :
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+apt-get install -y nodejs
+npm install -g pm2
+```
+
+---
+
+## Étape 1 — Déposer le code sur le VPS
+
+```bash
+mkdir -p /var/www
+cd /var/www
+git clone https://github.com/evrsch25/airnetclimatisation.git
+cd airnetclimatisation
+```
+
+Créer le fichier d'environnement (ne jamais le committer) :
+
+```bash
+nano /var/www/airnetclimatisation/.env.local
+```
+
+Contenu :
+
+```bash
 NEXT_PUBLIC_SITE_URL=https://www.airnetclimatisation.fr
+CONTACT_EMAIL=contact@airnetclimatisation.fr
+RESEND_API_KEY=
+RESEND_FROM="Air Net Climatisation <contact@airnetclimatisation.fr>"
 ```
 
-puis **redéployer**. Cette variable détermine les URL canoniques, le sitemap et
-les images de partage : tant qu'elle pointe ailleurs, Google indexera de
-mauvaises adresses.
+Laisser `RESEND_API_KEY` vide tant que Resend n'est pas configuré
+(voir `docs/RESEND.md`) : le site s'affiche, seul le formulaire invite à appeler.
+
+Puis :
+
+```bash
+cd /var/www/airnetclimatisation
+npm ci
+npm run build
+```
 
 ---
 
-## Étape 3 — Après la mise en ligne
+## Étape 2 — Lancer l'app avec PM2 (port 3001)
 
-- Vérifier que `https://www.airnetclimatisation.fr` et
-  `https://airnetclimatisation.fr` répondent tous les deux en HTTPS.
-- Envoyer un e-mail de test à `contact@airnetclimatisation.fr` depuis une boîte
-  externe, pour confirmer que la messagerie n'a pas été affectée.
-- Tester le formulaire de contact de bout en bout.
-- Déclarer le site dans [Google Search Console](https://search.google.com/search-console)
-  et y soumettre `https://www.airnetclimatisation.fr/sitemap.xml`.
-- Vérifier l'aperçu de partage sur
-  [opengraph.xyz](https://www.opengraph.xyz/).
+Le port **3001** évite le conflit avec un éventuel autre service déjà sur 3000.
+
+```bash
+cd /var/www/airnetclimatisation
+pm2 start npm --name airnet -- start -- -p 3001
+pm2 save
+pm2 startup
+# Exécuter ensuite la commande que PM2 affiche (systemctl enable…)
+```
+
+Vérifier :
+
+```bash
+pm2 status
+curl -I http://127.0.0.1:3001
+```
 
 ---
 
-## Et l'hébergement OVH déjà payé ?
+## Étape 3 — Nginx pour airnetclimatisation.fr
 
-Il continue de porter la **messagerie**, ce qui n'est pas rien. Si le pack
-inclut aussi un espace web désormais inutilisé, cela vaut le coup de vérifier
-au renouvellement s'il existe une offre moins chère limitée au domaine et aux
-e-mails. À voir avec le client, ce n'est pas urgent.
+Créer `/etc/nginx/sites-available/airnetclimatisation.fr` :
+
+```nginx
+server {
+    listen 80;
+    listen [::]:80;
+    server_name airnetclimatisation.fr www.airnetclimatisation.fr;
+
+    location / {
+        proxy_pass http://127.0.0.1:3001;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+Activer (chemins classiques Debian/Ubuntu ; adapter si Hostinger utilise `conf.d`) :
+
+```bash
+ln -s /etc/nginx/sites-available/airnetclimatisation.fr /etc/nginx/sites-enabled/
+nginx -t
+systemctl reload nginx
+```
+
+HTTPS :
+
+```bash
+certbot --nginx -d airnetclimatisation.fr -d www.airnetclimatisation.fr
+```
+
+> Certbot ne réussira que **après** que le DNS pointe déjà vers `72.61.106.201`
+> (étape 4). On peut donc déployer le site d'abord, brancher le DNS, puis
+> lancer Certbot.
+
+---
+
+## Étape 4 — DNS OVH → VPS
+
+*Espace client OVH → Noms de domaine → airnetclimatisation.fr → Zone DNS*
+
+1. Modifier le `A` de `@` : `72.61.106.201` (à la place de `51.91.236.255`).
+2. Pour `www` :
+   - soit un `A` vers `72.61.106.201`,
+   - soit un `CNAME` vers `airnetclimatisation.fr.` (avec le point final chez OVH).
+3. **Ne toucher à aucun `MX`.**
+
+Propagation : quelques minutes à quelques heures. Contrôle :
+
+```bash
+nslookup airnetclimatisation.fr 8.8.8.8
+# doit afficher 72.61.106.201
+```
+
+Puis Certbot (étape 3) si pas encore fait.
+
+---
+
+## Mises à jour ultérieures
+
+```bash
+cd /var/www/airnetclimatisation
+git pull origin main
+npm ci
+npm run build
+pm2 restart airnet
+```
+
+---
+
+## Checklist avant d'annoncer le site au client
+
+- [ ] `https://www.airnetclimatisation.fr` et `https://airnetclimatisation.fr` répondent
+- [ ] L'autre site déjà sur le VPS fonctionne toujours
+- [ ] Un e-mail test arrive bien sur `contact@airnetclimatisation.fr` (messagerie OVH intacte)
+- [ ] Formulaire de contact OK (après configuration Resend)
+- [ ] `pm2 status` → `airnet` en `online`
+- [ ] Sitemap : `https://www.airnetclimatisation.fr/sitemap.xml`
+
+---
+
+## Sécurité
+
+- Ne pas coller le mot de passe root dans un chat / un ticket.
+- Préférer une **clé SSH** (Hostinger → VPS → SSH keys).
+- Firewall : ports 22, 80, 443 ouverts ; le port 3001 **uniquement en local** (pas exposé).

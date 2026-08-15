@@ -1,26 +1,37 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import { MapPin } from "lucide-react";
 import { cities, interventionZone } from "@/constants/cities";
 import { contactInfo } from "@/constants/contact";
 
 /**
- * Carte OpenStreetMap : embarquée sans clé d'API ni compte tiers.
- * bbox cadre l'étang de Berre, marker positionné sur le siège à Port-de-Bouc.
+ * Leaflet (OpenStreetMap) chargé uniquement côté client :
+ * la librairie manipule le DOM et ne peut pas être rendue en SSR.
  */
-const BBOX = "4.85,43.30,5.35,43.72";
-const MARKER = "43.4034,4.9847";
-const embedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${BBOX}&layer=mapnik&marker=${MARKER}`;
-const fullMapUrl = `https://www.openstreetmap.org/?mlat=43.4034&mlon=4.9847#map=11/43.48/5.10`;
+const InterventionMap = dynamic(
+  () =>
+    import("@/components/shared/InterventionMap").then((mod) => mod.InterventionMap),
+  {
+    ssr: false,
+    loading: () => (
+      <div
+        className="flex aspect-[16/10] w-full items-center justify-center bg-surface text-sm text-text-muted md:aspect-[21/9]"
+        aria-hidden="true"
+      >
+        Chargement de la carte…
+      </div>
+    ),
+  },
+);
+
+const FULL_MAP_URL =
+  "https://www.openstreetmap.org/?mlat=43.4034&mlon=4.9847#map=10/43.35/5.15";
 
 export function MapSection() {
   return (
     <div className="overflow-hidden rounded-[var(--radius-card)] border border-border bg-surface">
-      <iframe
-        src={embedUrl}
-        title={`Carte de la zone d'intervention d'Air Net Climatisation — ${interventionZone.area}`}
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-        className="aspect-[16/10] w-full border-0 md:aspect-[21/9]"
-      />
+      <InterventionMap className="aspect-[16/10] w-full md:aspect-[21/9]" />
 
       <div className="border-t border-border p-6">
         <div className="flex items-start gap-3">
@@ -33,10 +44,14 @@ export function MapSection() {
               {cities.map((city) => city.name).join(" • ")}
             </p>
             <p className="mt-3 text-sm text-text-secondary">
+              Zone approximative : rayon de 35&nbsp;km depuis Port-de-Bouc
+              (jusqu&apos;à Marseille).
+            </p>
+            <p className="mt-1 text-sm text-text-secondary">
               Siège : {contactInfo.address.full}
             </p>
             <a
-              href={fullMapUrl}
+              href={FULL_MAP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-3 inline-block text-sm font-medium text-primary hover:underline"
