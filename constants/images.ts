@@ -15,12 +15,12 @@ export const images = {
 
   hero: {
     home: {
-      path: "/images/hero/accueil.webp",
+      path: "/images/hero/accueil-v2.webp",
       alt: "Technicien Air Net Climatisation nettoyant une unité intérieure avec une protection étanche",
       fallback: null,
     },
     prestations: {
-      path: "/images/hero/prestations.webp",
+      path: "/images/hero/prestations-v2.webp",
       alt: "Technicien Air Net Climatisation ouvrant une climatisation murale pour un nettoyage en profondeur",
       fallback: null,
     },
@@ -30,12 +30,12 @@ export const images = {
       fallback: null,
     },
     zone: {
-      path: "/images/hero/zone-intervention.webp",
+      path: "/images/hero/zone-intervention-v2.webp",
       alt: "Intervention Air Net Climatisation à domicile dans les Bouches-du-Rhône",
       fallback: null,
     },
     contact: {
-      path: "/images/hero/contact.webp",
+      path: "/images/hero/contact-v2.webp",
       alt: "Technicien Air Net Climatisation en intervention sur une climatisation murale",
       fallback: null,
     },
@@ -43,12 +43,12 @@ export const images = {
 
   beforeAfter: {
     before: {
-      path: "/images/gallery/avant-01.webp",
+      path: "/images/gallery/avant-01-v2.webp",
       alt: "Turbine de climatisation encrassée avant nettoyage",
       fallback: null,
     },
     after: {
-      path: "/images/gallery/apres-01.webp",
+      path: "/images/gallery/apres-01-v2.webp",
       alt: "Turbine de climatisation propre après intervention Air Net Climatisation",
       fallback: null,
     },
