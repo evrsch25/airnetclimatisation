@@ -16,12 +16,12 @@ export const images = {
   hero: {
     home: {
       path: "/images/hero/accueil.webp",
-      alt: "Technicien Air Net Climatisation nettoyant une climatisation murale",
+      alt: "Technicien Air Net Climatisation nettoyant une unité intérieure avec une protection étanche",
       fallback: null,
     },
     prestations: {
       path: "/images/hero/prestations.webp",
-      alt: "Filtre encrassé et produits professionnels de désinfection de climatisation",
+      alt: "Technicien Air Net Climatisation ouvrant une climatisation murale pour un nettoyage en profondeur",
       fallback: null,
     },
     whyUs: {
@@ -31,12 +31,12 @@ export const images = {
     },
     zone: {
       path: "/images/hero/zone-intervention.webp",
-      alt: "Technicien Air Net Climatisation arrivant chez un client dans les Bouches-du-Rhône",
+      alt: "Intervention Air Net Climatisation à domicile dans les Bouches-du-Rhône",
       fallback: null,
     },
     contact: {
       path: "/images/hero/contact.webp",
-      alt: "Technicien Air Net Climatisation conseillant une cliente à son domicile",
+      alt: "Technicien Air Net Climatisation en intervention sur une climatisation murale",
       fallback: null,
     },
   },
@@ -44,12 +44,12 @@ export const images = {
   beforeAfter: {
     before: {
       path: "/images/gallery/avant-01.webp",
-      alt: "Climatisation encrassée avant nettoyage",
+      alt: "Turbine de climatisation encrassée avant nettoyage",
       fallback: null,
     },
     after: {
       path: "/images/gallery/apres-01.webp",
-      alt: "Climatisation propre après intervention Air Net Climatisation",
+      alt: "Turbine de climatisation propre après intervention Air Net Climatisation",
       fallback: null,
     },
   },

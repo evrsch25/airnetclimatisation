@@ -19,7 +19,7 @@ export function HeroHome() {
             fill
             priority
             sizes="58vw"
-            className="object-cover object-center"
+            className="object-cover object-[72%_center]"
           />
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#fff_0%,rgba(255,255,255,0.88)_14%,rgba(255,255,255,0.3)_34%,rgba(255,255,255,0)_58%)]" />
         </div>

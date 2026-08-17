@@ -15,22 +15,26 @@ export const timelineSteps: TimelineStep[] = [
     ],
   },
   {
-    id: 2,
+    id: "indoor-filters",
+    numbered: false,
+    groupTitle: "Nettoyage de l'unité intérieure qui comprend les étapes suivantes",
     title: "Nettoyage des filtres",
     description: [
       "Les filtres sont retirés, aspirés, lavés à l'eau tiède, séchés et remontés, afin d'améliorer la qualité de l'air, le débit de ventilation et les performances énergétiques.",
     ],
   },
   {
-    id: 3,
-    title: "Nettoyage de l'évaporateur",
+    id: "indoor-exchanger",
+    numbered: false,
+    title: "Nettoyage de l'échangeur",
     description: [
-      "L'évaporateur est nettoyé avec un produit spécifique, afin d'éliminer poussières, bactéries, moisissures et résidus accumulés.",
+      "L'échangeur est nettoyé avec un produit spécifique, afin d'éliminer poussières, bactéries, moisissures et résidus accumulés.",
       "Cette opération améliore les échanges thermiques et limite les odeurs.",
     ],
   },
   {
-    id: 4,
+    id: "indoor-turbine",
+    numbered: false,
     title: "Nettoyage de la turbine de soufflage",
     description: [
       "La turbine de ventilation peut s'encrasser avec des poussières, de l'humidité et des dépôts gras.",
@@ -38,7 +42,8 @@ export const timelineSteps: TimelineStep[] = [
     ],
   },
   {
-    id: 5,
+    id: "indoor-condensates",
+    numbered: false,
     title: "Contrôle et nettoyage des condensats",
     description: [
       "Le technicien vérifie le bac à condensats, l'évacuation des eaux et la pompe de relevage si présente.",
@@ -46,7 +51,7 @@ export const timelineSteps: TimelineStep[] = [
     ],
   },
   {
-    id: 6,
+    id: 2,
     title: "Nettoyage de l'unité extérieure",
     description: [
       "L'unité extérieure est également nettoyée pour garantir un fonctionnement optimal.",
@@ -59,7 +64,7 @@ export const timelineSteps: TimelineStep[] = [
     ],
   },
   {
-    id: 7,
+    id: 3,
     title: "Remise en service et vérifications",
     description: ["Après remontage, nous effectuons les vérifications finales."],
     listItems: [

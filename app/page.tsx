@@ -17,7 +17,7 @@ import { Card } from "@/components/ui/Card";
 import { Reveal } from "@/components/ui/Reveal";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 import { getFaqSchema } from "@/lib/seo/schema";
-import { siteConfig } from "@/constants/site";
+import { siteConfig, devisGratuitMention } from "@/constants/site";
 import { heroBenefits, whyMaintainSections } from "@/constants/benefits";
 import { services } from "@/constants/services";
 import { timelineSteps } from "@/constants/timeline";
@@ -26,7 +26,7 @@ import { cities, interventionZone } from "@/constants/cities";
 import { ctaConfig } from "@/constants/cta";
 import { contactInfo } from "@/constants/contact";
 import { getFaqByIds, homeFaqIds } from "@/constants/faq";
-import { devisGratuitMention } from "@/constants/site";
+import { BeforeAfter } from "@/components/shared/BeforeAfter";
 
 export const metadata = generatePageMetadata({
   title: `${siteConfig.name} — Nettoyage & désinfection de climatisation`,
@@ -131,22 +131,14 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/*
-        Section Avant / Après — masquée tant que le client n'a pas de photos de chantier.
-        Réactiver en décommentant ce bloc et en déposant les fichiers dans public/images/gallery/
-        (voir images.beforeAfter dans constants/images.ts).
-
       <Section
+        eyebrow="Le résultat"
         title="Avant / Après"
-        subtitle="Découvrez la différence qu'un entretien professionnel peut faire."
+        subtitle="La différence d'un nettoyage professionnel sur la turbine de soufflage."
         background="primary-light"
       >
-        <BeforeAfter
-          beforeSrc={images.beforeAfter.before.path}
-          afterSrc={images.beforeAfter.after.path}
-        />
+        <BeforeAfter />
       </Section>
-      */}
 
       <Section
         eyebrow="Autour de l'étang de Berre"

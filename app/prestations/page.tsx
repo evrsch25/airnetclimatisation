@@ -5,6 +5,7 @@ import { ServiceGrid } from "@/components/shared/ServiceCard";
 import { PricingTable } from "@/components/shared/PricingTable";
 import { Timeline } from "@/components/shared/Timeline";
 import { FaqAccordion } from "@/components/shared/FaqAccordion";
+import { BeforeAfter } from "@/components/shared/BeforeAfter";
 import { CallToAction } from "@/components/shared/CallToAction";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { generatePageMetadata } from "@/lib/seo/metadata";
@@ -76,10 +77,18 @@ export default function PrestationsPage() {
       </Section>
 
       <Section
+        eyebrow="Le résultat"
+        title="Avant / Après"
+        subtitle="La différence d'un nettoyage professionnel sur la turbine de soufflage."
+        background="surface"
+      >
+        <BeforeAfter />
+      </Section>
+
+      <Section
         eyebrow="FAQ"
         title="Questions fréquentes"
         subtitle="Tout ce que vous devez savoir sur nos prestations."
-        background="surface"
         id="faq"
       >
         <FaqAccordion items={prestationsFaq} />

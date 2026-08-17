@@ -7,7 +7,7 @@ import type { CityPage } from "@/types";
  *
  * Les distances sont des estimations routières depuis Port-de-Bouc, à faire
  * valider par le client. Elles déterminent l'affichage de la majoration
- * déplacement de 15 € prévue dans la grille tarifaire (au-delà de 20 km).
+ * déplacement de 20 € prévue dans la grille tarifaire (au-delà de 20 km).
  */
 export const cityPages: CityPage[] = [
   {
@@ -36,7 +36,7 @@ export const cityPages: CityPage[] = [
       "Nous intervenons dans tous les quartiers de Martigues, du centre historique aux secteurs résidentiels de la côte bleue.",
     context: [
       "Martigues présente une grande variété d'habitat : maisons de ville anciennes autour des canaux de L'Île et de Jonquières, lotissements récents à Croix-Sainte et Saint-Jean, villas en bord de mer à Carro et La Couronne. Chaque configuration demande une approche différente, notamment pour l'accès au groupe extérieur.",
-      "Les logements proches du littoral subissent l'air salin, tandis que les secteurs situés sous les vents de la zone industrielle de Lavéra reçoivent davantage de poussières en suspension. Dans les deux cas, les filtres et l'évaporateur s'encrassent plus vite que la moyenne.",
+      "Les logements proches du littoral subissent l'air salin, tandis que les secteurs situés sous les vents de la zone industrielle de Lavéra reçoivent davantage de poussières en suspension. Dans les deux cas, les filtres et l'échangeur s'encrassent plus vite que la moyenne.",
     ],
     areas: ["L'Île", "Jonquières", "Ferrières", "Croix-Sainte", "Carro", "La Couronne", "Saint-Pierre"],
     localAngle: {
@@ -87,12 +87,12 @@ export const cityPages: CityPage[] = [
       "Nous intervenons à Châteauneuf-les-Martigues et à La Mède pour le nettoyage complet de votre climatisation.",
     context: [
       "Coincée entre l'étang de Berre et la chaîne de la Nerthe, la commune bénéficie d'un ensoleillement important et d'étés marqués, ce qui se traduit par un usage intensif de la climatisation de juin à septembre.",
-      "Le secteur de La Mède, en bordure d'étang, cumule humidité ambiante et proximité industrielle. L'humidité favorise le développement de bactéries et de moisissures dans le bac à condensats et sur l'évaporateur, ce qui explique les odeurs de renfermé à la mise en marche.",
+      "Le secteur de La Mède, en bordure d'étang, cumule humidité ambiante et proximité industrielle. L'humidité favorise le développement de bactéries et de moisissures dans le bac à condensats et sur l'échangeur, ce qui explique les odeurs de renfermé à la mise en marche.",
     ],
     areas: ["Centre du village", "La Mède", "Les Ventrons", "Notre-Dame"],
     localAngle: {
       title: "Humidité et mauvaises odeurs",
-      text: "Les logements proches de l'étang sont particulièrement concernés par les odeurs à la remise en route. Notre désinfection cible précisément l'évaporateur, la turbine et le circuit de condensats, à l'origine de ces odeurs.",
+      text: "Les logements proches de l'étang sont particulièrement concernés par les odeurs à la remise en route. Notre désinfection cible précisément l'échangeur, la turbine et le circuit de condensats, à l'origine de ces odeurs.",
     },
   },
   {
@@ -121,7 +121,7 @@ export const cityPages: CityPage[] = [
       "Entretien et désinfection de climatisation à Vitrolles, du plateau résidentiel aux zones d'activités.",
     context: [
       "Vitrolles est bâtie sur un plateau exposé au mistral, avec d'un côté de vastes quartiers résidentiels et de l'autre l'une des plus grandes zones commerciales du département. Le vent transporte poussières et pollens qui se déposent en continu sur les groupes extérieurs.",
-      "Cette exposition explique des filtres qui se colmatent vite. Un appareil qui souffle moins fort ou qui met plus longtemps à rafraîchir une pièce est presque toujours le signe d'un encrassement du filtre et de l'évaporateur.",
+      "Cette exposition explique des filtres qui se colmatent vite. Un appareil qui souffle moins fort ou qui met plus longtemps à rafraîchir une pièce est presque toujours le signe d'un encrassement du filtre et de l'échangeur.",
     ],
     areas: ["Le Village", "Les Pins", "La Frescoule", "La Petite Garrigue", "Les Cadesteaux"],
     localAngle: {
@@ -154,4 +154,4 @@ export function getCityPage(slug: string): CityPage | undefined {
 
 /** Seuil de la majoration déplacement défini dans la grille tarifaire */
 export const TRAVEL_SURCHARGE_KM = 20;
-export const TRAVEL_SURCHARGE_LABEL = "15 €";
+export const TRAVEL_SURCHARGE_LABEL = "20 €";

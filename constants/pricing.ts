@@ -6,20 +6,21 @@ export const pricingRows: PricingRow[] = [
     name: "Forfait PAC air/air mono-split",
     detail:
       "Nettoyage et désinfection d'une unité intérieure et d'une unité extérieure",
-    price: "170 € puis dégressif si plusieurs équipements*",
+    price: "150 € puis dégressif si plusieurs équipements*",
   },
   {
     id: "multi-split",
     name: "Forfait PAC air/air multi-split",
     detail:
       "Intervention comprenant une unité intérieure, une unité extérieure, puis ajout d'unités intérieures supplémentaires selon la configuration",
-    price: "170 € pour la base + 75 € pour le premier split supplémentaire, puis tarif dégressif de 5 € par split supplémentaire",
+    price:
+      "150 € pour la base + 65 € pour le premier split supplémentaire, puis tarif dégressif de 5 € par split supplémentaire",
   },
   {
     id: "deplacement",
     name: "Déplacement au-delà de 20 km",
     detail: "Majoration forfaitaire appliquée pour les interventions situées à plus de 20 km",
-    price: "15 €",
+    price: "20 €",
   },
 ];
 

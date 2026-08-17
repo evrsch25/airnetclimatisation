@@ -152,7 +152,7 @@ export default async function CityPage({ params }: PageProps) {
       <Section
         eyebrow="Notre méthode"
         title="Le déroulement de votre intervention"
-        subtitle="Sept étapes systématiques, de la mise en sécurité à la remise en service."
+        subtitle="De la mise en sécurité à la remise en service, chaque intervention suit le même protocole."
       >
         <Timeline steps={timelineSteps} />
       </Section>

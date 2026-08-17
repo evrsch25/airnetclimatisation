@@ -10,11 +10,10 @@ export const services: Service[] = [
     description:
       "Nettoyage et désinfection complet de votre installation split, unité intérieure et extérieure.",
     includes: [
-      "Nettoyage des filtres",
-      "Nettoyage de l'évaporateur",
-      "Nettoyage de la turbine",
-      "Contrôle des condensats",
+      "Nettoyage de l'unité intérieure",
       "Nettoyage de l'unité extérieure",
+      "Désinfection complète",
+      "Contrôle des condensats",
       "Remise en service et vérifications",
     ],
     benefits: [

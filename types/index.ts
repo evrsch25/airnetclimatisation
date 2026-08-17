@@ -93,10 +93,14 @@ export type WhyMaintainSection = {
 };
 
 export type TimelineStep = {
-  id: number;
+  id: string | number;
   title: string;
   description: string[];
   listItems?: string[];
+  /** false = sous-étape (sans numéro), affichée sous un titre de groupe */
+  numbered?: boolean;
+  /** Titre de regroupement affiché juste au-dessus de cette étape */
+  groupTitle?: string;
 };
 
 export type WhyUsItem = {

@@ -41,3 +41,4 @@ next-env.d.ts
 
 # captures de contrôle visuel (scripts/screenshot.mjs)
 /.screenshots
+/.tmp-photos
