@@ -5,9 +5,9 @@ import type { CityPage } from "@/types";
  * différent : dupliquer un même paragraphe en changeant le nom de la ville est
  * pénalisé par Google.
  *
- * Les distances sont des estimations routières depuis Port-de-Bouc, à faire
- * valider par le client. Elles déterminent l'affichage de la majoration
- * déplacement de 20 € prévue dans la grille tarifaire (au-delà de 20 km).
+ * Les distances sont des estimations routières depuis Port-de-Bouc, validées
+ * par le client. Elles sont purement indicatives : aucune majoration de
+ * déplacement n'est appliquée dans la zone d'intervention.
  */
 export const cityPages: CityPage[] = [
   {
@@ -16,7 +16,7 @@ export const cityPages: CityPage[] = [
     postalCode: "13110",
     distanceKm: 0,
     intro:
-      "Port-de-Bouc est notre commune d'implantation. Nous y intervenons dans les délais les plus courts, sans majoration de déplacement.",
+      "Port-de-Bouc est notre commune d'implantation. Nous y intervenons dans les délais les plus courts.",
     context: [
       "Située entre le golfe de Fos et l'étang de Berre, Port-de-Bouc combine un habitat pavillonnaire, des immeubles collectifs et des locaux professionnels le long du port. Les installations que nous y rencontrons vont du mono-split de studio au multi-split de maison familiale.",
       "La proximité immédiate de la mer expose les unités extérieures aux embruns salins, qui accélèrent l'encrassement des ailettes de l'échangeur et favorisent la corrosion. C'est l'une des raisons pour lesquelles un nettoyage annuel du groupe extérieur est particulièrement utile ici.",
@@ -24,7 +24,7 @@ export const cityPages: CityPage[] = [
     areas: ["Centre-ville", "Les Aigues Douces", "La Lèque", "Saint-Jean", "Les Comtes"],
     localAngle: {
       title: "Notre base d'intervention",
-      text: "Notre siège est installé à Port-de-Bouc. Pour les habitants de la commune, aucun frais de déplacement n'est appliqué et nous pouvons souvent proposer un créneau très rapidement.",
+      text: "Notre siège est installé à Port-de-Bouc. Pour les habitants de la commune, nous pouvons souvent proposer un créneau très rapidement.",
     },
   },
   {
@@ -151,7 +151,3 @@ export const cityPages: CityPage[] = [
 export function getCityPage(slug: string): CityPage | undefined {
   return cityPages.find((city) => city.slug === slug);
 }
-
-/** Seuil de la majoration déplacement défini dans la grille tarifaire */
-export const TRAVEL_SURCHARGE_KM = 20;
-export const TRAVEL_SURCHARGE_LABEL = "20 €";

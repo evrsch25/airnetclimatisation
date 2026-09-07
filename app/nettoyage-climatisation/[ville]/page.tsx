@@ -16,12 +16,7 @@ import { KeyFigures } from "@/components/shared/KeyFigures";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 import { getCityServiceSchema, getFaqSchema } from "@/lib/seo/schema";
-import {
-  cityPages,
-  getCityPage,
-  TRAVEL_SURCHARGE_KM,
-  TRAVEL_SURCHARGE_LABEL,
-} from "@/constants/city-pages";
+import { cityPages, getCityPage } from "@/constants/city-pages";
 import { images } from "@/constants/images";
 import { services } from "@/constants/services";
 import { timelineSteps } from "@/constants/timeline";
@@ -60,7 +55,6 @@ export default async function CityPage({ params }: PageProps) {
   if (!city) notFound();
 
   const faq = getFaqByIds(homeFaqIds);
-  const hasSurcharge = city.distanceKm > TRAVEL_SURCHARGE_KM;
   const otherCities = cityPages.filter((item) => item.slug !== city.slug);
 
   return (
@@ -122,17 +116,14 @@ export default async function CityPage({ params }: PageProps) {
               <h3 className="text-base font-semibold">Déplacement</h3>
               <p className="mt-2 text-sm">
                 {city.distanceKm === 0
-                  ? "Vous êtes dans notre commune d'implantation : aucun frais de déplacement n'est appliqué."
+                  ? "Vous êtes dans notre commune d'implantation."
                   : `Environ ${city.distanceKm} km depuis notre siège de ${contactInfo.address.city}.`}
               </p>
-              {city.distanceKm > 0 && (
-                <p className="mt-2 flex items-start gap-2 text-sm">
-                  <Check size={16} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
-                  {hasSurcharge
-                    ? `Au-delà de ${TRAVEL_SURCHARGE_KM} km, une majoration forfaitaire de ${TRAVEL_SURCHARGE_LABEL} s'applique.`
-                    : `Moins de ${TRAVEL_SURCHARGE_KM} km : aucune majoration de déplacement.`}
-                </p>
-              )}
+              <p className="mt-2 flex items-start gap-2 text-sm">
+                <Check size={16} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
+                Aucun frais de déplacement : le tarif annoncé est le même partout dans
+                notre zone d&apos;intervention.
+              </p>
             </Card>
           </div>
         </div>

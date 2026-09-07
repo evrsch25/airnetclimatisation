@@ -41,24 +41,13 @@ export const images = {
     },
   },
 
-  beforeAfter: {
-    before: {
-      path: "/images/gallery/avant-01-v2.webp",
-      alt: "Turbine de climatisation encrassée avant nettoyage",
-      fallback: null,
-    },
-    after: {
-      path: "/images/gallery/apres-01-v2.webp",
-      alt: "Turbine de climatisation propre après intervention Air Net Climatisation",
-      fallback: null,
-    },
-  },
+  /** Les couples avant/après sont décrits dans constants/before-after.ts */
 
   /** Visuels de marque fournis par le client */
   brand: {
     slogan: {
-      path: "/images/brand/slogan-aspirateur.png",
-      alt: "Votre air mérite plus qu'un simple coup d'aspirateur",
+      path: "/images/brand/technicien-nettoyage.webp",
+      alt: "Emmanuel, d'Air Net Climatisation, nettoyant une unité intérieure sous protection étanche",
       fallback: null,
     },
     airPlusPur: {

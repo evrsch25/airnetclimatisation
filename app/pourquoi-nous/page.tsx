@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/Card";
 import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
 import { CallToAction } from "@/components/shared/CallToAction";
+import { Reviews } from "@/components/shared/Reviews";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/constants/site";
 import { images } from "@/constants/images";
@@ -81,7 +82,15 @@ export default function PourquoiNousPage() {
         </div>
       </Section>
 
-      <Section title="Assurance professionnelle">
+      <Section
+        eyebrow="Ils nous ont fait confiance"
+        title="Ce que disent nos clients"
+        subtitle="Les avis laissés après nos interventions dans les Bouches-du-Rhône."
+      >
+        <Reviews />
+      </Section>
+
+      <Section title="Assurance professionnelle" background="surface">
         <Card className="mx-auto max-w-2xl">
           <p className="text-sm text-text-secondary">
             L&apos;entreprise dispose d&apos;une assurance Responsabilité Civile Professionnelle.
@@ -93,7 +102,7 @@ export default function PourquoiNousPage() {
         </Card>
       </Section>
 
-      <Section background="surface">
+      <Section>
         <CallToAction
           title="Faites confiance à un professionnel"
           description="Demandez votre devis gratuit et redonnez à votre climatisation toute sa performance."

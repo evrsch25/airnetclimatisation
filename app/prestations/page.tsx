@@ -79,7 +79,7 @@ export default function PrestationsPage() {
       <Section
         eyebrow="Le résultat"
         title="Avant / Après"
-        subtitle="La différence d'un nettoyage professionnel sur la turbine de soufflage."
+        subtitle="Des photos de nos interventions, sans retouche : turbine, échangeur, volets et filtres."
         background="surface"
       >
         <BeforeAfter />

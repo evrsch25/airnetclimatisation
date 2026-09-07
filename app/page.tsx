@@ -27,6 +27,7 @@ import { ctaConfig } from "@/constants/cta";
 import { contactInfo } from "@/constants/contact";
 import { getFaqByIds, homeFaqIds } from "@/constants/faq";
 import { BeforeAfter } from "@/components/shared/BeforeAfter";
+import { Reviews } from "@/components/shared/Reviews";
 
 export const metadata = generatePageMetadata({
   title: `${siteConfig.name} — Nettoyage & désinfection de climatisation`,
@@ -134,10 +135,18 @@ export default function HomePage() {
       <Section
         eyebrow="Le résultat"
         title="Avant / Après"
-        subtitle="La différence d'un nettoyage professionnel sur la turbine de soufflage."
+        subtitle="Des photos de nos interventions, sans retouche : turbine, échangeur, volets et filtres."
         background="primary-light"
       >
         <BeforeAfter />
+      </Section>
+
+      <Section
+        eyebrow="Ils nous ont fait confiance"
+        title="Ce que disent nos clients"
+        subtitle="Les avis laissés après nos interventions dans les Bouches-du-Rhône."
+      >
+        <Reviews />
       </Section>
 
       <Section

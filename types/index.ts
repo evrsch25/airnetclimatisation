@@ -65,6 +65,35 @@ export type DiscountRule = {
   discount: string;
 };
 
+export type PaymentMethod = {
+  id: string;
+  label: string;
+  icon: string;
+};
+
+export type BeforeAfterShot = {
+  src: string;
+  alt: string;
+};
+
+export type BeforeAfterPair = {
+  id: string;
+  title: string;
+  description: string;
+  /** Ratio largeur/hauteur des deux photos, identique pour l'avant et l'après */
+  ratio: number;
+  before: BeforeAfterShot;
+  after: BeforeAfterShot;
+};
+
+export type Review = {
+  id: string;
+  rating: number;
+  /** Titre court repris de l'avis Google, quand il y en a un */
+  headline?: string;
+  text: string;
+};
+
 export type Benefit = {
   id: string;
   title: string;

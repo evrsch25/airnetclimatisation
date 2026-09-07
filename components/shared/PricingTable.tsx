@@ -1,5 +1,12 @@
 import { Card } from "@/components/ui/Card";
-import { discountRules, pricingNotes, pricingRows } from "@/constants/pricing";
+import { Icon } from "@/components/ui/Icon";
+import {
+  discountRules,
+  paymentMethods,
+  paymentNote,
+  pricingNotes,
+  pricingRows,
+} from "@/constants/pricing";
 
 export function PricingTable() {
   return (
@@ -43,16 +50,44 @@ export function PricingTable() {
         </table>
       </div>
 
-      <Card className="bg-surface">
-        <h4 className="text-sm font-semibold text-text-primary">Remises dégressives mono-split</h4>
-        <ul className="mt-3 space-y-2">
-          {discountRules.map((rule) => (
-            <li key={rule.count} className="text-sm text-text-secondary">
-              <span className="font-medium text-text-primary">{rule.count}</span> — {rule.discount}
-            </li>
-          ))}
-        </ul>
-      </Card>
+      <div className="grid gap-4 md:grid-cols-2">
+        <Card className="bg-surface">
+          <h4 className="text-sm font-semibold text-text-primary">
+            Forfaits plusieurs mono-split
+          </h4>
+          <p className="mt-1.5 text-sm text-text-secondary">
+            Tarif global pour plusieurs installations nettoyées lors d&apos;une même
+            intervention.
+          </p>
+          <ul className="mt-4 space-y-2">
+            {discountRules.map((rule) => (
+              <li
+                key={rule.count}
+                className="flex items-baseline justify-between gap-4 border-b border-border-light pb-2 last:border-0 last:pb-0"
+              >
+                <span className="text-sm text-text-secondary">Forfait {rule.count}</span>
+                <span className="text-sm font-semibold text-primary">{rule.discount}</span>
+              </li>
+            ))}
+          </ul>
+        </Card>
+
+        <Card className="bg-surface">
+          <h4 className="text-sm font-semibold text-text-primary">Moyens de paiement</h4>
+          <p className="mt-1.5 text-sm text-text-secondary">{paymentNote}</p>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {paymentMethods.map((method) => (
+              <li
+                key={method.id}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3.5 py-1.5 text-sm font-medium text-text-primary"
+              >
+                <Icon name={method.icon} size={16} />
+                {method.label}
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </div>
 
       <div className="space-y-2">
         {pricingNotes.map((note) => (

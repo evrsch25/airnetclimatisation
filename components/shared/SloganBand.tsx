@@ -3,7 +3,7 @@ import { Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { images } from "@/constants/images";
-import { heroContent } from "@/constants/site";
+import { heroContent, siteConfig } from "@/constants/site";
 import { trustGuarantees } from "@/constants/why-us";
 
 export function SloganBand() {
@@ -25,7 +25,10 @@ export function SloganBand() {
 
           <Reveal delay={0.15}>
             <div>
-              <h2>Un entretien à la hauteur de votre installation</h2>
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+                Notre conviction
+              </p>
+              <h2 className="mt-3">{siteConfig.slogan}</h2>
               <p className="mt-4 text-lg">{heroContent.closing}</p>
 
               <p className="mt-8 text-sm font-semibold text-text-primary">
