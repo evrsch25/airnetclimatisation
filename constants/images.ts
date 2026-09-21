@@ -50,11 +50,6 @@ export const images = {
       alt: "Emmanuel, d'Air Net Climatisation, nettoyant une unité intérieure sous protection étanche",
       fallback: null,
     },
-    airPlusPur: {
-      path: "/images/brand/air-plus-pur.png",
-      alt: "Air Net Climatisation — Un air plus pur, un confort au quotidien",
-      fallback: null,
-    },
   },
 
   og: {

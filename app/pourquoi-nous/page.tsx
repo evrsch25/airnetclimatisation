@@ -8,7 +8,6 @@ import { CallToAction } from "@/components/shared/CallToAction";
 import { Reviews } from "@/components/shared/Reviews";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/constants/site";
-import { images } from "@/constants/images";
 import { whyUsIntro, whyUsItems, trustGuarantees } from "@/constants/why-us";
 import { ctaConfig } from "@/constants/cta";
 import { contactInfo } from "@/constants/contact";
@@ -33,9 +32,6 @@ export default function PourquoiNousPage() {
         primaryCta={ctaConfig.primary}
         secondaryCta={ctaConfig.secondary}
         badges={trustGuarantees}
-        imageSrc={images.brand.airPlusPur.path}
-        imageAlt={images.brand.airPlusPur.alt}
-        imageAspect="square"
       />
 
       <Section title="Nos engagements" subtitle="Des valeurs qui guident chaque intervention.">

@@ -10,7 +10,7 @@ type HeroProps = {
   intro?: string;
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
-  imageSrc: string;
+  imageSrc?: string;
   imageAlt?: string;
   imageAspect?: "landscape" | "square";
   badges?: string[];
@@ -32,15 +32,36 @@ export function Hero({
   return (
     <section className={cn("bg-background py-12 md:py-16 lg:py-20", className)}>
       <Container>
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div
+          className={cn(
+            "grid items-center gap-10 lg:gap-16",
+            imageSrc && "lg:grid-cols-2",
+          )}
+        >
           <Reveal>
-            <div>
+            <div className={cn(!imageSrc && "mx-auto max-w-3xl text-center")}>
               <h1 className="text-text-primary">{title}</h1>
-              <p className="mt-4 text-lg font-medium text-primary">{subtitle}</p>
-              {intro && <p className="mt-4 text-text-secondary">{intro}</p>}
+              <p
+                className={cn(
+                  "mt-4 text-lg font-medium text-primary",
+                  !imageSrc && "mx-auto max-w-2xl",
+                )}
+              >
+                {subtitle}
+              </p>
+              {intro && (
+                <p className={cn("mt-4 text-text-secondary", !imageSrc && "mx-auto max-w-2xl")}>
+                  {intro}
+                </p>
+              )}
 
               {badges && badges.length > 0 && (
-                <ul className="mt-6 space-y-2">
+                <ul
+                  className={cn(
+                    "mt-6 space-y-2",
+                    !imageSrc && "mx-auto inline-block text-left",
+                  )}
+                >
                   {badges.map((badge) => (
                     <li key={badge} className="flex items-center gap-2 text-sm text-text-secondary">
                       <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
@@ -50,7 +71,12 @@ export function Hero({
                 </ul>
               )}
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div
+                className={cn(
+                  "mt-8 flex flex-col gap-3 sm:flex-row",
+                  !imageSrc && "justify-center",
+                )}
+              >
                 <Button variant="primary" href={primaryCta.href}>
                   {primaryCta.label}
                 </Button>
@@ -61,23 +87,25 @@ export function Hero({
             </div>
           </Reveal>
 
-          <Reveal delay={0.15}>
-            <div
-              className={cn(
-                "relative overflow-hidden rounded-[var(--radius-image)] bg-surface",
-                imageAspect === "square" ? "aspect-square" : "aspect-[4/3]",
-              )}
-            >
-              <Image
-                src={imageSrc}
-                alt={imageAlt}
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-          </Reveal>
+          {imageSrc && (
+            <Reveal delay={0.15}>
+              <div
+                className={cn(
+                  "relative overflow-hidden rounded-[var(--radius-image)] bg-surface",
+                  imageAspect === "square" ? "aspect-square" : "aspect-[4/3]",
+                )}
+              >
+                <Image
+                  src={imageSrc}
+                  alt={imageAlt}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+            </Reveal>
+          )}
         </div>
       </Container>
     </section>
