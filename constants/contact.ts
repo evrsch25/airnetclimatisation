@@ -5,10 +5,10 @@ export const contactInfo: ContactInfo = {
   phoneDisplay: "06 35 51 03 58",
   email: "contact@airnetclimatisation.fr",
   address: {
-    street: "4 rue Le Ville d'Ajaccio",
+    street: "Les Jardins de Nouis",
     postalCode: "13110",
     city: "Port-de-Bouc",
-    full: "4 rue Le Ville d'Ajaccio, 13110 Port-de-Bouc",
+    full: "Les Jardins de Nouis, 13110 Port-de-Bouc",
   },
   hours: {
     label: "Horaires",
