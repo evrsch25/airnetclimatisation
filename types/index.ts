@@ -92,6 +92,8 @@ export type Review = {
   /** Titre court repris de l'avis Google, quand il y en a un */
   headline?: string;
   text: string;
+  /** Nom affiché sur Google, uniquement s'il figure sur la capture fournie */
+  author?: string;
 };
 
 export type Benefit = {

@@ -78,6 +78,13 @@ export const faqItems: FaqItem[] = [
     question: "Travaillez-vous avec des devis gratuits ?",
     answer: "Oui, nous proposons des devis gratuits et sans engagement.",
   },
+  {
+    id: "tax-credit",
+    question:
+      "Ai-je le droit à une réduction d'impôt pour le nettoyage et l'entretien de la climatisation ?",
+    answer:
+      "Non, il n'existe malheureusement aucune réduction ni crédit d'impôt pour le simple nettoyage et l'entretien courant d'une climatisation ou d'une pompe à chaleur. Le nettoyage de climatisation ne fait pas partie des activités éligibles aux « Services à la Personne » (crédit d'impôt de 50 %), car il requiert des compétences techniques spécifiques en fluides frigorigènes qui sortent du cadre du ménage à domicile.",
+  },
 ];
 
 /** 6 premières questions affichées sur l'accueil */
@@ -99,6 +106,7 @@ export const prestationsFaqIds = [
   "price",
   "mandatory",
   "free-quote",
+  "tax-credit",
 ];
 
 export function getFaqByIds(ids: string[]): FaqItem[] {

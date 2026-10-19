@@ -59,6 +59,12 @@ export function Reviews() {
                 >
                   <p>{review.text}</p>
                 </blockquote>
+
+                {review.author && (
+                  <p className="mt-auto pt-4 text-sm font-medium text-text-primary">
+                    {review.author}
+                  </p>
+                )}
               </Card>
             </Reveal>
           </li>

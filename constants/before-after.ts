@@ -69,4 +69,49 @@ export const beforeAfterPairs: BeforeAfterPair[] = [
       alt: "Grille et filtre de climatisation propres après nettoyage",
     },
   },
+  {
+    id: "ailettes",
+    title: "Ailettes de l'échangeur",
+    description:
+      "Un matelas de poussière bloque le passage de l'air. Une fois dégagé, l'échangeur retrouve toute son efficacité.",
+    ratio: 540 / 860,
+    before: {
+      src: "/images/gallery/ailettes-avant.webp",
+      alt: "Ailettes d'échangeur colmatées par un épais dépôt de poussière avant nettoyage",
+    },
+    after: {
+      src: "/images/gallery/ailettes-apres.webp",
+      alt: "Ailettes d'échangeur dégagées et propres après intervention",
+    },
+  },
+  {
+    id: "interieur",
+    title: "Unité intérieure — échangeur",
+    description:
+      "Les ailettes et le cadre de l'unité intérieure accumulent poussières et dépôts. Après nettoyage, l'appareil retrouve son aspect d'origine.",
+    ratio: 1080 / 500,
+    before: {
+      src: "/images/gallery/interieur-avant.webp",
+      alt: "Échangeur d'unité intérieure encrassé avant nettoyage",
+    },
+    after: {
+      src: "/images/gallery/interieur-apres.webp",
+      alt: "Échangeur d'unité intérieure propre après intervention Air Net Climatisation",
+    },
+  },
+  {
+    id: "exterieur",
+    title: "Unité extérieure — grille",
+    description:
+      "La grille et l'échangeur du groupe extérieur s'encrassent avec les poussières et les toiles d'araignées. Un nettoyage restaure le débit d'air.",
+    ratio: 540 / 860,
+    before: {
+      src: "/images/gallery/exterieur-avant.webp",
+      alt: "Grille d'unité extérieure colmatée avant nettoyage",
+    },
+    after: {
+      src: "/images/gallery/exterieur-apres.webp",
+      alt: "Grille d'unité extérieure propre après intervention",
+    },
+  },
 ];
